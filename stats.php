@@ -17,7 +17,7 @@
     </header>
 
     <nav class="bg-teal-100 p-4 flex justify-center gap-6 shadow-inner">
-        <a href="/youcode/Zoo-Encyclop-die/index.html"
+        <a href="/youcode/Zoo-Encyclop-die/index.php"
             class="text-teal-800 font-semibold hover:text-teal-600 transition">Home</a>
         <a href="/youcode/Zoo-Encyclop-die/animals/animal.php"
             class="text-teal-800 font-semibold hover:text-teal-600 transition">Animals</a>

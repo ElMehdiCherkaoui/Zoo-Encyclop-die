@@ -16,12 +16,14 @@
     </header>
 
     <nav class="bg-teal-100 p-4 flex justify-center gap-6 shadow-inner">
-        <a href="index.html" class="text-teal-800 font-semibold hover:text-teal-600 transition">Home</a>
+        <a href="/youcode/Zoo-Encyclop-die/index.php"
+            class="text-teal-800 font-semibold hover:text-teal-600 transition">Home</a>
         <a href="/youcode/Zoo-Encyclop-die/animals/animal.php"
             class="text-teal-800 font-semibold hover:text-teal-600 transition">Animals</a>
         <a href="/youcode/Zoo-Encyclop-die//Habitats/habitats.php"
             class="text-teal-800 font-semibold hover:text-teal-600 transition">Habitats</a>
-        <a href="stats.php" class="text-teal-800 font-semibold hover:text-teal-600 transition">Stats</a>
+        <a href="/youcode/Zoo-Encyclop-die/stats.php"
+            class="text-teal-800 font-semibold hover:text-teal-600 transition">Stats</a>
     </nav>
 
     <main class="max-w-6xl mx-auto p-8">
