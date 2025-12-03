@@ -42,49 +42,49 @@ INSERT INTO
 VALUES (
         'Lion',
         'Carnivore',
-        '/img/Lion.png',
+        '../img/lion.jpg',
         1
     ),
     (
         'éléphant',
         'Herbivore',
-        '/img/éléphant.png',
+        '../img/éléphant.png',
         1
     ),
     (
         'Tiger',
         'Carnivore',
-        '/img/Tiger.png',
+        '../img/Tigre.png',
         2
     ),
     (
         'Singe',
         'Carnivore',
-        '/img/Singe.png',
+        '../img/Singe.png',
         2
     ),
     (
         'Chameau',
         'Herbivore',
-        '/img/Chameau.png',
+        '../img/Chameau.png',
         3
     ),
     (
         'Tiger',
         'Carnivore',
-        '/img/Fennec.png',
+        '../img/Fennec.png',
         3
     ),
     (
         'Dauphin',
         'Carnivore',
-        '/img/Dauphin.png',
+        '../img/Dauphin.png',
         4
     ),
     (
         'Requin',
         'Carnivore',
-        '/img/Requin.png',
+        '../img/Requin.png',
         4
     );
 
