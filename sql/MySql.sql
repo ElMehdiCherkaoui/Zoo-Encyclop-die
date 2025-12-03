@@ -76,7 +76,7 @@ VALUES (
         3
     ),
     (
-        'Dauphin',
+        'Dauphin',  
         'Carnivore',
         '../img/Dauphin.png',
         4
@@ -99,9 +99,14 @@ select * from animal;
 select * from habitats;
 
 SELECT Nom, Image, NomHab
-FROM habitats
-    LEFT JOIN animal ON animal.Habitat_ID = habitats.IdHab
+FROM habitats,animal
+    
 WHERE
-    habitats.IdHab = 4;
+    habitats.IdHab = animal.Habitat_ID;
 
 ALTER TABLE animal RENAME COLUMN IDAnir TO IDAnim;
+
+ALTER TABLE animal
+MODIFY COLUMN Image TEXT;
+
+TRUNCATE TABLE animal;

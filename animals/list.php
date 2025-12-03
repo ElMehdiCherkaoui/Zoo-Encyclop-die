@@ -4,10 +4,10 @@ include "../database.php";
 
 $query = "
 SELECT Nom, Image, NomHab,Type_alimentaire
-FROM habitats
-    LEFT JOIN animal ON animal.Habitat_ID = habitats.IdHab
-
-
+FROM habitats,animal
+    
+WHERE
+    habitats.IdHab = animal.Habitat_ID;
 ";
 $result = mysqli_query($conn, $query);
 
