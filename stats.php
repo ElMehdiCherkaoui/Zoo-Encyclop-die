@@ -41,31 +41,7 @@
     <footer class="bg-teal-600 text-white text-center p-6 mt-10 shadow-inner">
         <p>&copy; 2025 Zoo Kids Learning. All rights reserved.</p>
     </footer>
-    <script>
-    const ctx = document.getElementById('animalChart').getContext('2d');
-    const animalChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Savane', 'Jungle', 'Désert', 'Océan'],
-            datasets: [{
-                label: 'Number of Animals',
-                data: [5, 20, 3, 4],
-                backgroundColor: ['#14b8a6', '#0f766e', '#5eead4', '#22d3ee']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top'
-                },
-                title: {
-                    display: true,
-                    text: 'Animals per Habitat'
-                }
-            }
-        }
-    });
+    <script src="js/stats.js">
     </script>
 </body>
 

@@ -106,10 +106,33 @@
                 <h2 class="text-3xl font-bold mb-3 text-teal-700">Animals List</h2>
                 <p class="text-gray-700 text-lg">Explore animals, their food type, and habitat.</p>
             </section>
-            <button onclick="openModal()"
-                class="block mx-auto mb-6 bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">
-                Add Animal
-            </button>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+
+                <button onclick="openModal()"
+                    class="bg-teal-600 text-white px-5 py-2 rounded-lg shadow hover:bg-teal-700 transition">
+                    Add Animal
+                </button>
+
+                <select id="filterFood"
+                    class="p-2 border rounded-lg shadow-sm w-full sm:w-48 focus:ring-2 focus:ring-teal-400 outline-none">
+                    <option value="All">All Food Types</option>
+                    <option value="Carnivore">Carnivore</option>
+                    <option value="Herbivore">Herbivore</option>
+                    <option value="Omnivore">Omnivore</option>
+                </select>
+
+
+                <select id="filterHabitat"
+                    class="p-2 border rounded-lg shadow-sm w-full sm:w-48 focus:ring-2 focus:ring-teal-400 outline-none">
+                    <option value="All">All Habitats</option>
+                    <option value="Savane">Savane</option>
+                    <option value="Jungle">Jungle</option>
+                    <option value="Désert">Desert</option>
+                    <option value="Océan">Océan</option>
+                </select>
+
+            </div>
 
             <section id="animal-container"
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
@@ -118,9 +141,8 @@
                 </p>
             </section>
 
-
-
         </main>
+
 
 
         <footer class="bg-teal-600 text-white text-center p-6 mt-10 shadow-inner">

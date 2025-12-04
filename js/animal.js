@@ -1,5 +1,6 @@
-function displayAnimals(animals) {
+function displayAnimalsAll(animals) {
     const container = document.getElementById("animal-container");
+
     container.innerHTML = "";
 
     animals.forEach(a => {
@@ -20,12 +21,44 @@ function displayAnimals(animals) {
     });
 }
 
+function displayAnimals(animals, habit, foodtype) {
+    const container = document.getElementById("animal-container");
+
+    container.innerHTML = "";
+
+    animals.forEach(a => {
+
+        if (
+            (habit !== "All" && a.NomHab !== habit) ||
+            (foodtype !== "All" && a.Type_alimentaire !== foodtype)
+        ) {
+            return;
+        }
+
+        const card = `
+            <div class="animal-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
+                <img src="${a.Image}" alt="${a.Nom}" class="w-full h-40 object-cover rounded-lg mb-3">
+                <h3 class="text-xl font-semibold text-teal-700 mb-1">${a.Nom}</h3>
+                <p class="text-gray-600 text-sm">Type: ${a.Type_alimentaire}</p>
+                <p class="text-gray-600 text-sm">Habitat: ${a.NomHab}</p>
+
+                <div class="flex justify-between mt-2">
+                    <button class="EditBtn bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-500" data-id="${a.IDAnim}">Edit</button>
+                    <button class="deleteBtn bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500" data-id="${a.IDAnim}">Delete</button>
+                </div>
+            </div>
+        `;
+
+        container.innerHTML += card;
+    });
+}
+
 fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
     .then(res => res.json())
     .then(data => {
         if (data.length > 0) {
             console.log(data);
-            displayAnimals(data);
+            displayAnimalsAll(data);
         }
     })
     .catch(err => console.error("Fetch error:", err));
@@ -175,3 +208,35 @@ document.getElementById("updateAnimalBtn").addEventListener("click", async () =>
 function closeEditModal() {
     document.getElementById("editModal").classList.add("hidden");
 }
+
+
+
+
+let selectedFood = "All";
+let selectedHabitat = "All";
+
+document.getElementById("filterFood").addEventListener("change", (e) => {
+    selectedFood = e.target.value;
+
+    fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
+        .then(res => res.json())
+        .then(data => {
+            displayAnimals(data, selectedHabitat, selectedFood);
+        })
+        .catch(err => console.error("Fetch error:", err));
+});
+
+document.getElementById("filterHabitat").addEventListener("change", (e) => {
+    selectedHabitat = e.target.value;
+
+    fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
+        .then(res => res.json())
+        .then(data => {
+            if (data.length > 0) {
+                console.log(data);
+                displayAnimals(data, selectedHabitat, selectedFood);
+            }
+        })
+        .catch(err => console.error("Fetch error:", err));
+});
+

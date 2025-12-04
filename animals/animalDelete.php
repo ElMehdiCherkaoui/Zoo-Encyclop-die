@@ -1,9 +1,10 @@
 <?php
 header("Content-Type: application/json");
+
 include "../database.php";
 
-
 $Nom = $_POST["Nom"];
+
 $query = "DELETE FROM animal WHERE Nom = '$Nom'";
 
 if (mysqli_query($conn, $query)) {

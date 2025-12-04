@@ -1,18 +1,23 @@
 <?php
 header("Content-Type: application/json");
+
 include "../database.php";
 
 $Id = $_POST["Id"];
+
 $Nom = $_POST["Nom"];
+
 $Type = $_POST["Type_alimentaire"];
+
 $Habitat = $_POST["Habitat_ID"];
+
 $Image = $_POST["Image"];
 
 $query = "UPDATE animal 
           SET Nom = '$Nom', 
-              Type_alimentaire = '$Type', 
-              Habitat_ID = '$Habitat', 
-              Image = '$Image'
+                Type_alimentaire = '$Type', 
+                Habitat_ID = '$Habitat', 
+                Image = '$Image'
           WHERE IDAnim = '$Id';";
 
 if (mysqli_query($conn, $query)) {
