@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 include "../database.php";
 
 $query = "
-SELECT Nom, Image, NomHab,Type_alimentaire
+SELECT IDAnim,Nom, Image, NomHab,Type_alimentaire
 FROM habitats,animal
     
 WHERE

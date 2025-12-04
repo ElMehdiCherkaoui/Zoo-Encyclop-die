@@ -58,6 +58,48 @@
 
         </div>
 
+
+
+        <div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+            <div class="bg-white w-96 p-6 rounded-xl shadow-xl">
+                <h2 class="text-2xl font-bold text-teal-700 mb-4">Edit Animal</h2>
+
+                <label class="block mb-2 font-semibold">Animal Name</label>
+                <input type="text" id="editAnimalName" class="w-full p-2 border rounded-lg mb-4"
+                    placeholder="Lion, Elephant...">
+
+                <label class="block mb-2 font-semibold">Food Type</label>
+                <select id="editFoodType" class="w-full p-2 border rounded-lg mb-4">
+                    <option value="">Choose type</option>
+                    <option value="Carnivore">Carnivore</option>
+                    <option value="Herbivore">Herbivore</option>
+                    <option value="Omnivore">Omnivore</option>
+                </select>
+
+                <label class="block mb-2 font-semibold">Habitat</label>
+                <select id="editHabitatSelect" class="w-full p-2 border rounded-lg mb-4">
+                    <option value="">Loading habitats...</option>
+                </select>
+
+                <label class="block mb-2 font-semibold">Image URL</label>
+                <input type="text" id="editImageUrl" class="w-full p-2 border rounded-lg mb-4"
+                    placeholder="https://example.com/lion.jpg">
+
+                <div class="flex justify-end gap-3 mt-4">
+                    <button onclick="closeEditModal()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                        Cancel
+                    </button>
+
+                    <button id="updateAnimalBtn" class="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-500">
+                        Update
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="editAnimalId">
         <main class="max-w-6xl mx-auto p-8">
 
             <section class="text-center mb-10">
@@ -69,20 +111,13 @@
                 Add Animal
             </button>
 
-            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="animal-container">
-                <div class="animal-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-                    <img src="../img/lion.jpg" alt="Lion" class="w-full h-40 object-cover rounded-lg mb-3">
-                    <h3 class="text-xl font-semibold text-teal-700 mb-1">Lion</h3>
-                    <p class="text-gray-600 text-sm">Type: Food Type</p>
-                    <p class="text-gray-600 text-sm">Habitat: Habitat Name</p>
-                    <div class="flex justify-between mt-2">
-                        <button class="EditBtn bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-500">Edit</button>
-                        <button
-                            class="deleteBtn bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500">Delete</button>
-                    </div>
-                </div>
-
+            <section id="animal-container"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+                <p class="col-span-full text-center text-gray-500 text-lg">
+                    Il n’y a aucun animal pour le moment.
+                </p>
             </section>
+
 
 
         </main>

@@ -11,5 +11,3 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo json_encode(["success" => false, "error" => mysqli_error($conn)]);
 }
-
-mysqli_close($conn);
