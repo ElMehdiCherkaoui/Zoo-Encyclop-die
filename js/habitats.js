@@ -9,11 +9,11 @@ function displayHabitats(animals) {
     animals.forEach(a => {
         const card = `
                 <div class="habitatCard bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-               <img src="${a.Image}" alt="Habitat Name" class="w-full h-40 object-cover rounded-lg mb-3">
+               <img src="${a.ImageHab}" alt="Habitat Name" class="w-full h-40 object-cover rounded-lg mb-3">
                 <h3 class="text-xl font-semibold text-teal-700 mb-1">${a.NomHab}</h3>
                 <p class="text-gray-600 text-sm">${a.Description_Hab}</p>
                 <div class="flex justify-between mt-2">
-                    <button class="EditBtn bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-500">Edit</button>
+                    <button class="EditBtn bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-500" data-id="${a.IdHab}">Edit</button>
                     <button class="deleteBtn bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500">Delete</button>
                 </div>
             </div>
@@ -81,9 +81,7 @@ container.addEventListener("click", (e) => {
 
         if (!card) return;
 
-        const habitatName = card.querySelector("h3").textContent;
 
-        card.remove();
 
         const formData = new FormData();
 
@@ -97,10 +95,65 @@ container.addEventListener("click", (e) => {
             .then(result => {
                 if (result.success) {
                     console.log(`${habitatName} deleted from database!`);
+                    const habitatName = card.querySelector("h3").textContent;
+
+                    card.remove();
                 } else {
-                    console.log(`Error deleting ${animalName}:`, result.error);
+                    alert(`Error deleting ${animalName}: ${result.error}`);
+
                 }
             })
-            .catch(err => console.log("Fetch error:", err));
+            .catch(err => alert(`Fetch error: ${err}`));
     }
 });
+
+
+const id_Needed = 0;
+
+
+
+
+
+container.addEventListener("click", (e) => {
+    if (e.target.classList.contains("EditBtn")) {
+
+        document.getElementById("editModal").classList.remove("hidden");
+
+        let id = e.target.dataset.id;
+        document.getElementById("editHabitatId").value = id;
+
+    }
+});
+
+document.getElementById("updateHabitatsBtn").addEventListener("click", async () => {
+    let id = document.getElementById("editHabitatId").value;
+
+
+    let formData = new FormData();
+
+    formData.append("IdHab", id);
+
+    formData.append("NomHab", document.getElementById("editHabitatName").value);
+
+    formData.append("Description_Hab", document.getElementById("edithabitatDescription").value);
+
+    formData.append("Image", document.getElementById("editImageUrl").value);
+
+    fetch("/youcode/Zoo-Encyclop-die/Habitats/habitatsEdit.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert("habitat updated!");
+                location.reload();
+            } else {
+                alert("Error: could not update animal.");
+            }
+        });
+});
+
+function closeEditModal() {
+    document.getElementById("editModal").classList.add("hidden");
+}

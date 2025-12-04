@@ -27,35 +27,56 @@
     </nav>
 
     <main class="max-w-6xl mx-auto p-8">
-        <section class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-3 text-teal-700">Explore the Zoo!</h2>
-            <p class="text-gray-700 text-lg">Discover different animals and their habitats in a fun and interactive way.
+
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-3 text-teal-700">Welcome to the Zoo Adventure!</h2>
+            <p class="text-gray-700 text-lg">
+                Learn, play, and explore the amazing world of animals through fun interactive sections!
             </p>
         </section>
 
         <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-                <img src="img/savane.jpg" alt="Savane" class="w-full h-40 object-cover rounded-lg mb-3">
-                <h3 class="text-xl font-semibold text-teal-700 mb-1">Savane</h3>
-                <p class="text-gray-600 text-sm">Wide warm area with lots of grass and few trees.</p>
+
+            <div
+                class="bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition p-6 text-center">
+                <img src="img/lion.jpg" alt="Animals" class="w-24 h-24 mx-auto mb-4">
+                <h3 class="text-xl font-semibold text-teal-700 mb-1">Meet the Animals</h3>
+                <p class="text-gray-600 text-sm">
+                    Discover fun facts and stories about your favorite animals!
+                </p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-                <img src="img/jungle.jpg" alt="Jungle" class="w-full h-40 object-cover rounded-lg mb-3">
-                <h3 class="text-xl font-semibold text-teal-700 mb-1">Jungle</h3>
-                <p class="text-gray-600 text-sm">Dense, humid forest full of plants.</p>
+
+            <div
+                class="bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition p-6 text-center">
+                <img src="https://play-lh.googleusercontent.com/D2s4-8A93I0pe9pudzEWGvGvKnG4H2IQxKJU4IzFv9SSXy6yFyj7t3V8v0w8u_OXQg=w480-h960-rw"
+                    alt="Games" class="w-24 h-24 mx-auto mb-4">
+                <h3 class="text-xl font-semibold text-teal-700 mb-1">Play Games</h3>
+                <p class="text-gray-600 text-sm">
+                    Test your memory and animal knowledge with cool mini-games.
+                </p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-                <img src="img/desert.jpg" alt="Desert" class="w-full h-40 object-cover rounded-lg mb-3">
-                <h3 class="text-xl font-semibold text-teal-700 mb-1">Désert</h3>
-                <p class="text-gray-600 text-sm">Very dry place with little vegetation.</p>
+
+            <div
+                class="bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition p-6 text-center">
+                <img src="https://i0.wp.com/frostingandglue.com/wp-content/uploads/2024/03/Facts-about-Animals.jpg?resize=1536%2C1024&ssl=1"
+                    alt="Fun Facts" class="w-24 h-24 mx-auto mb-4">
+                <h3 class="text-xl font-semibold text-teal-700 mb-1">Fun Facts</h3>
+                <p class="text-gray-600 text-sm">
+                    Learn amazing facts that will surprise you about nature!
+                </p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
-                <img src="img/ocean.jpg" alt="Océan" class="w-full h-40 object-cover rounded-lg mb-3">
-                <h3 class="text-xl font-semibold text-teal-700 mb-1">Océan</h3>
-                <p class="text-gray-600 text-sm">Large salty water area with marine life.</p>
+            <div
+                class="bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition p-6 text-center">
+                <img src="img/zoo.jpg" alt="Explore" class="w-24 h-24 mx-auto mb-4">
+                <h3 class="text-xl font-semibold text-teal-700 mb-1">Explore the Zoo</h3>
+                <p class="text-gray-600 text-sm">
+                    Travel through jungle, savanna, desert and ocean zones!
+                </p>
             </div>
+
         </section>
     </main>
+
 
     <footer class="bg-teal-600 text-white text-center p-6 mt-10 shadow-inner">
         <p>&copy; 2025 Zoo Kids Learning. All rights reserved.</p>

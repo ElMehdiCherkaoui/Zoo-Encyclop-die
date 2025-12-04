@@ -2,7 +2,7 @@ CREATE TABLE habitats (
     IdHab INT AUTO_INCREMENT PRIMARY KEY,
     NomHab VARCHAR(100) NOT NULL,
     Description_Hab TEXT,
-    Image TEXT
+    ImageHab TEXT
 );
 
 CREATE TABLE animal (
@@ -15,22 +15,27 @@ CREATE TABLE animal (
 );
 
 INSERT INTO
-    habitats (NomHab, Description_Hab)
+    habitats (NomHab, Description_Hab,ImageHab)
 VALUES (
         "Savane",
-        "Grande zone chaude avec beaucoup d’herbe et quelques arbres."
+        "Grande zone chaude avec beaucoup d’herbe et quelques arbres.",
+        "../img/savane.jpg"
+
     ),
     (
         "Jungle",
-        "Forêt très dense, humide et pleine de végétation."
+        "Forêt très dense, humide et pleine de végétation.",
+        "../img/jungle.jpg"
     ),
     (
         "Désert",
-        "Endroit très sec avec peu de plantes et de fortes chaleurs."
+        "Endroit très sec avec peu de plantes et de fortes chaleurs.",
+        "../img/desert.jpg"
     ),
     (
         "Océan",
-        "Grande zone d’eau salée où vivent beaucoup d’animaux marins."
+        "Grande zone d’eau salée où vivent beaucoup d’animaux marins.",
+        "../img/ocean.jpg"
     );
 
 INSERT INTO
@@ -108,7 +113,10 @@ ALTER TABLE animal RENAME COLUMN IDAnir TO IDAnim;
 
 ALTER TABLE animal MODIFY COLUMN Image TEXT;
 
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE animal;
+SET FOREIGN_KEY_CHECKS = 1;
+
 
 ALTER TABLE habitats ADD COLUMN Image TEXT Not NULL;
 
@@ -118,5 +126,5 @@ SET
 WHERE
     NomHab = "Océan";
 
-DELETE FROM habitats WHERE IdHab = "7"; 
+DELETE FROM habitats WHERE IdHab = "4"; 
 

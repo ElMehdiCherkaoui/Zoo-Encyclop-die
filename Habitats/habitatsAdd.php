@@ -6,7 +6,7 @@ $NomHab = $_POST["NomHab"];
 $Description_Hab = $_POST["Description_Hab"];
 $Image = $_POST["Image"];
 
-$query = "INSERT INTO habitats (NomHab, Description_Hab, Image)
+$query = "INSERT INTO habitats (NomHab, Description_Hab, ImageHab)
           VALUES ('$NomHab', '$Description_Hab', '$Image')";
 
 if (mysqli_query($conn, $query)) {

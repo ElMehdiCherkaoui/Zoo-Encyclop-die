@@ -20,7 +20,7 @@ function displayAnimals(animals) {
     });
 }
 
-fetch("/youcode/Zoo-Encyclop-die/animals/list.php")
+fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
     .then(res => res.json())
     .then(data => {
         if (data.length > 0) {
@@ -30,7 +30,7 @@ fetch("/youcode/Zoo-Encyclop-die/animals/list.php")
     })
     .catch(err => console.error("Fetch error:", err));
 
-fetch("/youcode/Zoo-Encyclop-die/Habitats/list.php")
+fetch("/youcode/Zoo-Encyclop-die/Habitats/habitatsList.php")
     .then(res => res.json())
     .then(data => {
         let select = document.getElementById("habitatSelect");
@@ -70,7 +70,7 @@ container.addEventListener("click", (e) => {
 
         formData.append("Nom", animalName);
 
-        fetch("/youcode/Zoo-Encyclop-die/animals/delete.php", {
+        fetch("/youcode/Zoo-Encyclop-die/animals/animalDelete.php", {
             method: "POST",
             body: formData
         })
@@ -113,7 +113,7 @@ document.getElementById("saveAnimalBtn").addEventListener("click", () => {
 
     formData.append("Image", image);
 
-    fetch("/youcode/Zoo-Encyclop-die/animals/add.php", {
+    fetch("/youcode/Zoo-Encyclop-die/animals/animalAdd.php", {
         method: "POST",
         body: formData,
     })
@@ -157,7 +157,7 @@ document.getElementById("updateAnimalBtn").addEventListener("click", async () =>
 
     formData.append("Image", document.getElementById("editImageUrl").value);
 
-    fetch("/youcode/Zoo-Encyclop-die/animals/edit.php", {
+    fetch("/youcode/Zoo-Encyclop-die/animals/animalEdit.php", {
         method: "POST",
         body: formData
     })
