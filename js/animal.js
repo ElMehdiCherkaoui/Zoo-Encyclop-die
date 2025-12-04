@@ -94,7 +94,7 @@ function closeModal() {
     document.getElementById("addModal").classList.add("hidden");
 }
 
-document.getElementById("saveAnimalBtn").addEventListener("click", (e) => {
+document.getElementById("saveAnimalBtn").addEventListener("click", () => {
     const name = document.getElementById("animalName").value;
 
     const type = document.getElementById("foodType").value;

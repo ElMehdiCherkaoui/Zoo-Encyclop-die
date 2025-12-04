@@ -1,7 +1,8 @@
 CREATE TABLE habitats (
     IdHab INT AUTO_INCREMENT PRIMARY KEY,
     NomHab VARCHAR(100) NOT NULL,
-    Description_Hab TEXT
+    Description_Hab TEXT,
+    Image TEXT
 );
 
 CREATE TABLE animal (
@@ -76,7 +77,7 @@ VALUES (
         3
     ),
     (
-        'Dauphin',  
+        'Dauphin',
         'Carnivore',
         '../img/Dauphin.png',
         4
@@ -99,14 +100,23 @@ select * from animal;
 select * from habitats;
 
 SELECT Nom, Image, NomHab
-FROM habitats,animal
-    
+FROM habitats, animal
 WHERE
     habitats.IdHab = animal.Habitat_ID;
 
 ALTER TABLE animal RENAME COLUMN IDAnir TO IDAnim;
 
-ALTER TABLE animal
-MODIFY COLUMN Image TEXT;
+ALTER TABLE animal MODIFY COLUMN Image TEXT;
 
 TRUNCATE TABLE animal;
+
+ALTER TABLE habitats ADD COLUMN Image TEXT Not NULL;
+
+UPDATE habitats
+SET
+    Image = "../img/ocean.jpg"
+WHERE
+    NomHab = "Océan";
+
+DELETE FROM habitats WHERE IdHab = "7"; 
+

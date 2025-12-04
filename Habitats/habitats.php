@@ -31,8 +31,12 @@
             <h2 class="text-3xl font-bold mb-3 text-teal-700">Habitats List</h2>
             <p class="text-gray-700 text-lg">Explore the different habitats and see which animals live there.</p>
         </section>
+        <button onclick="openModal()"
+            class="block mx-auto mb-6 bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">
+            Add Animal
+        </button>
 
-        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="habitats-grid">
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="habitats-container">
             <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4">
                 <img src="../img/savane.jpg" alt="Habitat Name" class="w-full h-40 object-cover rounded-lg mb-3">
                 <h3 class="text-xl font-semibold text-teal-700 mb-1">savane</h3>
@@ -50,6 +54,33 @@
         <p>&copy; 2025 Zoo Kids Learning. All rights reserved.</p>
     </footer>
 
+
+    <div id="addModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div class="bg-white w-96 p-6 rounded-xl shadow-xl">
+            <h2 class="text-2xl font-bold text-teal-700 mb-4">Add New Habitat</h2>
+            <label class="block mb-2 font-semibold"> Name</label>
+            <input type="text" id="habitatName" class="w-full p-2 border rounded-lg mb-4"
+                placeholder="Savane, Ocean...">
+            <label class="block mb-2 font-semibold">Description</label>
+            <textarea id="habitatDescription" maxlength="250"
+                class="w-full p-2 border rounded-lg mb-4 min-h-[12em] max-h-[16em]"
+                placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sapiente! Sequi et, commodi explicabo saepe voluptate fugit assumenda nulla recusandae quos facere ea unde nemo quam. Pariatur veritatis quo"></textarea>
+            <label class="block mb-2 font-semibold">Image URL</label>
+            <input type="text" id="imageUrl" class="w-full p-2 border rounded-lg mb-4"
+                placeholder="https://example.com/Savane.jpg">
+            <div class="flex justify-end gap-3 mt-4">
+                <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                    Cancel
+                </button>
+                <button id="saveHabitatBtn" class="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-500">
+                    Save
+                </button>
+            </div>
+        </div>
+
+    </div>
+
 </body>
+<script src="../js/habitats.js"></script>
 
 </html>
