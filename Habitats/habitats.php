@@ -33,7 +33,7 @@
         </section>
         <button onclick="openModal()"
             class="block mx-auto mb-6 bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">
-            Add Animal
+            Add Habitat
         </button>
 
         <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="habitats-container">

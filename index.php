@@ -48,8 +48,7 @@
 
             <div
                 class="bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition p-6 text-center">
-                <img src="https://play-lh.googleusercontent.com/D2s4-8A93I0pe9pudzEWGvGvKnG4H2IQxKJU4IzFv9SSXy6yFyj7t3V8v0w8u_OXQg=w480-h960-rw"
-                    alt="Games" class="w-24 h-24 mx-auto mb-4">
+                <img src="img/games.jpg" alt="Games" class="w-24 h-24 mx-auto mb-4">
                 <h3 class="text-xl font-semibold text-teal-700 mb-1">Play Games</h3>
                 <p class="text-gray-600 text-sm">
                     Test your memory and animal knowledge with cool mini-games.
