@@ -57,16 +57,20 @@ saveHabitatBtn.addEventListener("click", () => {
         alert("Invalid name (no spaces allowed)");
         return;
     }
+
     else if (!urlR.test(imageUrl) || imageUrl === "") {
         alert("Invalid URL");
         return;
     }
+
     else if (habitatDescription == "") {
         alert("Fill the description");
         return;
     }
+
     else {
         let formData = new FormData();
+
         formData.append("NomHab", habitatName);
 
         formData.append("Description_Hab", habitatDescription);
@@ -92,8 +96,6 @@ saveHabitatBtn.addEventListener("click", () => {
     }
 });
 
-
-
 container.addEventListener("click", (e) => {
     if (e.target.classList.contains("deleteBtn")) {
         if (!confirm("Are you sure you want to delete this animal?")) return;
@@ -101,8 +103,6 @@ container.addEventListener("click", (e) => {
         const card = e.target.closest(".habitatCard");
 
         if (!card) return;
-
-
 
         const formData = new FormData();
 
@@ -128,31 +128,54 @@ container.addEventListener("click", (e) => {
     }
 });
 
-
 container.addEventListener("click", (e) => {
     if (e.target.classList.contains("EditBtn")) {
 
         document.getElementById("editModal").classList.remove("hidden");
 
         let id = e.target.dataset.id;
-        document.getElementById("editHabitatId").value = id;
 
+        document.getElementById("editHabitatId").value = id;
     }
 });
 
 document.getElementById("updateHabitatsBtn").addEventListener("click", async () => {
     let id = document.getElementById("editHabitatId").value;
 
+    const editHabitatName = document.getElementById("editHabitatName").value;
+
+    const edithabitatDescription = document.getElementById("edithabitatDescription").value;
+
+    const editImageUrl = document.getElementById("editImageUrl").value;
+
+    let editHabitatNameR = /^[A-Za-z]+$/;
+
+    let editUrlR = /^https?:\/\/.+/;
+
+    if (!editHabitatNameR.test(editHabitatName) || editHabitatName === "") {
+        alert("Invalid name (no spaces allowed)");
+        return;
+    }
+
+    else if (!editUrlR.test(editImageUrl) || editImageUrl === "") {
+        alert("Invalid URL");
+        return;
+    }
+
+    else if (edithabitatDescription == "") {
+        alert("Fill the description");
+        return;
+    }
 
     let formData = new FormData();
 
     formData.append("IdHab", id);
 
-    formData.append("NomHab", document.getElementById("editHabitatName").value);
+    formData.append("NomHab", editHabitatName);
 
-    formData.append("Description_Hab", document.getElementById("edithabitatDescription").value);
+    formData.append("Description_Hab", edithabitatDescription);
 
-    formData.append("Image", document.getElementById("editImageUrl").value);
+    formData.append("Image", editImageUrl);
 
     fetch("/youcode/Zoo-Encyclop-die/Habitats/habitatsEdit.php", {
         method: "POST",

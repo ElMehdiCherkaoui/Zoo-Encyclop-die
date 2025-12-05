@@ -144,19 +144,27 @@ document.getElementById("saveAnimalBtn").addEventListener("click", (e) => {
     if (!nameR.test(name) || name === "") {
         alert("Invalid name (no spaces allowed)");
         return;
-    } else if (!urlR.test(image) || image === "") {
+    }
+
+    else if (!urlR.test(image) || image === "") {
         alert("Invalid URL");
         return;
     }
+
     else if (type == "" || habitat == "") {
         alert("select the options");
         return;
     }
+
     else {
         let formData = new FormData();
+
         formData.append("Nom", name);
+
         formData.append("Type_alimentaire", type);
+
         formData.append("Habitat_ID", habitat);
+
         formData.append("Image", image);
 
         fetch("/youcode/Zoo-Encyclop-die/animals/animalAdd.php", {
@@ -188,43 +196,62 @@ container.addEventListener("click", (e) => {
     }
 });
 
-document
-    .getElementById("updateAnimalBtn")
-    .addEventListener("click", async () => {
-        let id = document.getElementById("editAnimalId").value;
+document.getElementById("updateAnimalBtn").addEventListener("click", async () => {
+    let id = document.getElementById("editAnimalId").value;
 
-        let formData = new FormData();
+    const editAnimalName = document.getElementById("editAnimalName").value;
 
-        formData.append("Id", id);
+    const editFoodType = document.getElementById("editFoodType").value;
 
-        formData.append("Nom", document.getElementById("editAnimalName").value);
+    const editHabitatSelect = document.getElementById("editHabitatSelect").value;
 
-        formData.append(
-            "Type_alimentaire",
-            document.getElementById("editFoodType").value
-        );
+    const editImageUrl = document.getElementById("editImageUrl").value;
 
-        formData.append(
-            "Habitat_ID",
-            document.getElementById("editHabitatSelect").value
-        );
+    let editNameR = /^[A-Za-z]+$/;
 
-        formData.append("Image", document.getElementById("editImageUrl").value);
+    let editUrlR = /^https?:\/\/.+/;
 
-        fetch("/youcode/Zoo-Encyclop-die/animals/animalEdit.php", {
-            method: "POST",
-            body: formData,
-        })
-            .then((response) => response.json())
-            .then((result) => {
-                if (result.success) {
-                    alert("Animal updated!");
-                    location.reload();
-                } else {
-                    alert("Error: could not update animal.");
-                }
-            });
-    });
+    if (!editNameR.test(editAnimalName) || editAnimalName === "") {
+        alert("Invalid name (no spaces allowed)");
+        return;
+    }
+
+    else if (!editUrlR.test(editImageUrl) || editImageUrl === "") {
+        alert("Invalid URL");
+        return;
+    }
+
+    else if (editFoodType == "" || editHabitatSelect == "") {
+        alert("select the options");
+        return;
+    }
+
+    let formData = new FormData();
+
+    formData.append("Id", id);
+
+    formData.append("Nom", editAnimalName);
+
+    formData.append("Type_alimentaire", editFoodType);
+
+    formData.append("Habitat_ID", editHabitatSelect);
+
+    formData.append("Image", editImageUrl);
+
+    fetch("/youcode/Zoo-Encyclop-die/animals/animalEdit.php", {
+        method: "POST",
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            if (result.success) {
+                alert("Animal updated!");
+                location.reload();
+            } else {
+                alert("Error: could not update animal.");
+            }
+        });
+});
 
 function closeEditModal() {
     document.getElementById("editModal").classList.add("hidden");
