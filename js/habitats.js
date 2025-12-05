@@ -43,32 +43,53 @@ function closeModal() {
 
 saveHabitatBtn.addEventListener("click", () => {
     const habitatName = document.getElementById("habitatName").value;
+
     const habitatDescription = document.getElementById("habitatDescription").value;
+
     const imageUrl = document.getElementById("imageUrl").value;
-    let formData = new FormData();
-    console.log(habitatDescription)
-    formData.append("NomHab", habitatName);
 
-    formData.append("Description_Hab", habitatDescription);
 
-    formData.append("Image", imageUrl);
+    let habitatNameR = /^[A-Za-z]+$/;
 
-    fetch("/youcode/Zoo-Encyclop-die/habitats/habitatsAdd.php", {
-        method: "POST",
-        body: formData,
-    })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                alert("Habitat added!");
-                location.reload();
-            } else {
-                alert("Error: could not save animal.");
-            }
+    let urlR = /^https?:\/\/.+/;
+
+    if (!habitatNameR.test(habitatName) || habitatName === "") {
+        alert("Invalid name (no spaces allowed)");
+        return;
+    }
+    else if (!urlR.test(imageUrl) || imageUrl === "") {
+        alert("Invalid URL");
+        return;
+    }
+    else if (habitatDescription == "") {
+        alert("Fill the description");
+        return;
+    }
+    else {
+        let formData = new FormData();
+        formData.append("NomHab", habitatName);
+
+        formData.append("Description_Hab", habitatDescription);
+
+        formData.append("Image", imageUrl);
+
+        fetch("/youcode/Zoo-Encyclop-die/habitats/habitatsAdd.php", {
+            method: "POST",
+            body: formData,
         })
-        .catch(err => console.log("Fetch Error:", err));
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    alert("Habitat added!");
+                    location.reload();
+                } else {
+                    alert("Error: could not save animal.");
+                }
+            })
+            .catch(err => console.log("Fetch Error:", err));
 
-    document.getElementById("addModal").classList.add("hidden");
+        document.getElementById("addModal").classList.add("hidden");
+    }
 });
 
 
@@ -106,12 +127,6 @@ container.addEventListener("click", (e) => {
             .catch(err => alert(`Fetch error: ${err}`));
     }
 });
-
-
-const id_Needed = 0;
-
-
-
 
 
 container.addEventListener("click", (e) => {
