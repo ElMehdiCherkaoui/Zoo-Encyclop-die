@@ -3,7 +3,7 @@ function displayAnimalsAll(animals) {
 
     container.innerHTML = "";
 
-    animals.forEach(a => {
+    animals.forEach((a) => {
         const card = `
             <div class="animal-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-4" >
                 <img src="${a.Image}" alt="${a.Nom}" class="w-full h-40 object-cover rounded-lg mb-3">
@@ -26,8 +26,7 @@ function displayAnimals(animals, habit, foodtype) {
 
     container.innerHTML = "";
 
-    animals.forEach(a => {
-
+    animals.forEach((a) => {
         if (
             (habit !== "All" && a.NomHab !== habit) ||
             (foodtype !== "All" && a.Type_alimentaire !== foodtype)
@@ -54,36 +53,36 @@ function displayAnimals(animals, habit, foodtype) {
 }
 
 fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
         if (data.length > 0) {
             console.log(data);
             displayAnimalsAll(data);
         }
     })
-    .catch(err => console.error("Fetch error:", err));
+    .catch((err) => console.error("Fetch error:", err));
 
 fetch("/youcode/Zoo-Encyclop-die/Habitats/habitatsList.php")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
         let select = document.getElementById("habitatSelect");
-        let selectedit = document.getElementById("editHabitatSelect")
+        let selectedit = document.getElementById("editHabitatSelect");
         select.innerHTML = "";
         selectedit.innerHTML = "";
-        data.forEach(h => {
+        data.forEach((h) => {
             let option = document.createElement("option");
             option.value = h.IdHab;
             option.textContent = h.NomHab;
             select.appendChild(option);
         });
-        data.forEach(h => {
+        data.forEach((h) => {
             let option = document.createElement("option");
             option.value = h.IdHab;
             option.textContent = h.NomHab;
             selectedit.appendChild(option);
         });
     })
-    .catch(err => console.log("Fetch habitat error:", err));
+    .catch((err) => console.log("Fetch habitat error:", err));
 
 const container = document.getElementById("animal-container");
 
@@ -105,17 +104,17 @@ container.addEventListener("click", (e) => {
 
         fetch("/youcode/Zoo-Encyclop-die/animals/animalDelete.php", {
             method: "POST",
-            body: formData
+            body: formData,
         })
-            .then(response => response.json())
-            .then(result => {
+            .then((response) => response.json())
+            .then((result) => {
                 if (result.success) {
                     console.log(`${animalName} deleted from database!`);
                 } else {
                     console.log(`Error deleting ${animalName}:`, result.error);
                 }
             })
-            .catch(err => console.log("Fetch error:", err));
+            .catch((err) => console.log("Fetch error:", err));
     }
 });
 
@@ -127,7 +126,9 @@ function closeModal() {
     document.getElementById("addModal").classList.add("hidden");
 }
 
-document.getElementById("saveAnimalBtn").addEventListener("click", () => {
+document.getElementById("saveAnimalBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+
     const name = document.getElementById("animalName").value;
 
     const type = document.getElementById("foodType").value;
@@ -136,37 +137,49 @@ document.getElementById("saveAnimalBtn").addEventListener("click", () => {
 
     const image = document.getElementById("imageUrl").value;
 
-    let formData = new FormData();
+    let nameR = /^[A-Za-z]+$/;
 
-    formData.append("Nom", name);
+    let urlR = /^https?:\/\/.+/;
 
-    formData.append("Type_alimentaire", type);
+    if (!nameR.test(name) || name === "") {
+        alert("Invalid name (no spaces allowed)");
+        return;
+    } else if (!urlR.test(image) || image === "") {
+        alert("Invalid URL");
+        return;
+    }
+    else if (type == "" || habitat == "") {
+        alert("select the options");
+        return;
+    }
+    else {
+        let formData = new FormData();
+        formData.append("Nom", name);
+        formData.append("Type_alimentaire", type);
+        formData.append("Habitat_ID", habitat);
+        formData.append("Image", image);
 
-    formData.append("Habitat_ID", habitat);
-
-    formData.append("Image", image);
-
-    fetch("/youcode/Zoo-Encyclop-die/animals/animalAdd.php", {
-        method: "POST",
-        body: formData,
-    })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                alert("Animal added!");
-                location.reload();
-            } else {
-                alert("Error: could not save animal.");
-            }
+        fetch("/youcode/Zoo-Encyclop-die/animals/animalAdd.php", {
+            method: "POST",
+            body: formData,
         })
-        .catch(err => console.log("Fetch Error:", err));
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.success) {
+                    alert("Animal added!");
+                    location.reload();
+                } else {
+                    alert("Error: could not save animal.");
+                }
+            })
+            .catch((err) => console.log("Fetch Error:", err));
 
-    document.getElementById("addModal").classList.add("hidden");
+        document.getElementById("addModal").classList.add("hidden");
+    }
 });
 
 container.addEventListener("click", (e) => {
     if (e.target.classList.contains("EditBtn")) {
-
         document.getElementById("editModal").classList.remove("hidden");
 
         let id = e.target.dataset.id;
@@ -175,42 +188,47 @@ container.addEventListener("click", (e) => {
     }
 });
 
-document.getElementById("updateAnimalBtn").addEventListener("click", async () => {
-    let id = document.getElementById("editAnimalId").value;
+document
+    .getElementById("updateAnimalBtn")
+    .addEventListener("click", async () => {
+        let id = document.getElementById("editAnimalId").value;
 
-    let formData = new FormData();
+        let formData = new FormData();
 
-    formData.append("Id", id);
+        formData.append("Id", id);
 
-    formData.append("Nom", document.getElementById("editAnimalName").value);
+        formData.append("Nom", document.getElementById("editAnimalName").value);
 
-    formData.append("Type_alimentaire", document.getElementById("editFoodType").value);
+        formData.append(
+            "Type_alimentaire",
+            document.getElementById("editFoodType").value
+        );
 
-    formData.append("Habitat_ID", document.getElementById("editHabitatSelect").value);
+        formData.append(
+            "Habitat_ID",
+            document.getElementById("editHabitatSelect").value
+        );
 
-    formData.append("Image", document.getElementById("editImageUrl").value);
+        formData.append("Image", document.getElementById("editImageUrl").value);
 
-    fetch("/youcode/Zoo-Encyclop-die/animals/animalEdit.php", {
-        method: "POST",
-        body: formData
-    })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                alert("Animal updated!");
-                location.reload();
-            } else {
-                alert("Error: could not update animal.");
-            }
-        });
-});
+        fetch("/youcode/Zoo-Encyclop-die/animals/animalEdit.php", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.success) {
+                    alert("Animal updated!");
+                    location.reload();
+                } else {
+                    alert("Error: could not update animal.");
+                }
+            });
+    });
 
 function closeEditModal() {
     document.getElementById("editModal").classList.add("hidden");
 }
-
-
-
 
 let selectedFood = "All";
 let selectedHabitat = "All";
@@ -219,24 +237,23 @@ document.getElementById("filterFood").addEventListener("change", (e) => {
     selectedFood = e.target.value;
 
     fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
             displayAnimals(data, selectedHabitat, selectedFood);
         })
-        .catch(err => console.error("Fetch error:", err));
+        .catch((err) => console.error("Fetch error:", err));
 });
 
 document.getElementById("filterHabitat").addEventListener("change", (e) => {
     selectedHabitat = e.target.value;
 
     fetch("/youcode/Zoo-Encyclop-die/animals/animalList.php")
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
             if (data.length > 0) {
                 console.log(data);
                 displayAnimals(data, selectedHabitat, selectedFood);
             }
         })
-        .catch(err => console.error("Fetch error:", err));
+        .catch((err) => console.error("Fetch error:", err));
 });
-
